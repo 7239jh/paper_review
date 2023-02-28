@@ -28,6 +28,9 @@
     - Task, 언어에 따라 전처리 전략이 다름 
     - 정규식(Rwgular Expression)사용(VS코드에서 사용 가능)
     - 정규식을 사용할 경우, 규칙에 의해 노이즈를 제거하기 때문에 노이즈를 전부 제거하는 것은 어려움, 그러므로 적절한 합의점을 찾아야함
+    <br>
+      <img src='paper_review/패캠자연어처리입문/1.png' width=450><br>
+    
   3-2. 레이블링  
   3-3. 토큰화(Tokenization)  
   3-4. 분절(Subword Segmentation)
