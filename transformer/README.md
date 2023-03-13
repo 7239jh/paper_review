@@ -32,3 +32,11 @@ RNN언어 모델은 Autoregressive 한 성격을 가지고 있어서 예측 할 
 - 벨류(Values): 모든 시점의 인코더 아웃풋
 - Attention weight: softmax($h_t^{dec}$ * W * ${h_{1:m}}^{{enc}^T}$)하면 각 인코더 아웃풋에 대한 가중치가 나옴. 이때 가중치 각각의 값을 Attention weight라고 한다. 여기서 W는 gradient descent로 학습 시켜야 할 linear weight이다. 내적 연산이기 때문에 내적값이 클수록 cos 유사도가 커지는 것과 마찬가지이다. 그러므로 softmax를 씌우면 각 아웃풋들의 확률 분포가 나옴.
 - LSTM을 쓰더라도 문장(시퀀스)이 너무 길어지면 한계가 있었는데 어텐션을 통해 더욱 긴 문장에도 대처할 수 있게 됨
+
+# Attention is all you need
+
+## Abstract 
+기존에 성능이 좋은 모델들은 어텐션으로 연결된 인코더와 디코더를 포함한 RNN or CNN에 기반하는 모델이었다. RNN과 CNN을 제거하고 Attention만을 기반으로한 Transformer를 개발하였고 병렬화가 용이하고 훈련하는데 시간은 적게 드는데 성능은 더 좋았다. Transformer는 다른 task에서도 잘 일반화된다. train-set이 크고 제한된 둘 모두에서 작동을 잘한다.
+
+## 1. Introduction 
+RNN방식의 언어모델이 SOTA방법론으로 당연시 되었지만 직렬방식의 구조로 인해 훈련효율성, 기억유지의 한계 등이 있었다. 이를 보완하기 위한 다양한 시도가 있었지만 한계
