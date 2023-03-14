@@ -39,4 +39,7 @@ RNN언어 모델은 Autoregressive 한 성격을 가지고 있어서 예측 할 
 기존에 성능이 좋은 모델들은 어텐션으로 연결된 인코더와 디코더를 포함한 RNN or CNN에 기반하는 모델이었다. RNN과 CNN을 제거하고 Attention만을 기반으로한 Transformer를 개발하였고 병렬화가 용이하고 훈련하는데 시간은 적게 드는데 성능은 더 좋았다. Transformer는 다른 task에서도 잘 일반화된다. train-set이 크고 제한된 둘 모두에서 작동을 잘한다.
 
 ## 1. Introduction 
-RNN방식의 언어모델이 SOTA방법론으로 당연시 되었지만 직렬방식의 구조로 인해 훈련효율성, 기억유지의 한계 등이 있었다. 이를 보완하기 위한 다양한 시도가 있었지만 한계
+RNN방식의 언어모델이 SOTA방법론으로 당연시 되었지만 직렬방식의 구조로 인해 훈련효율성, 기억유지의 한계 등이 있었다. 이를 보완하기 위한 다양한 시도가 있었지만 한계를 극복하지는 못했다. 또한 Attention모델은 언어 모델에서 뛰어난 성능을 보이지만 여전히 RNN과 같이 사용되었다. 그래서 병렬화를 위해 RNN을 제거하고 Attention만을 사용하는 Transformer를 제안한다.
+
+## 2. Background 
+시퀀스 연산을 줄이려는 목표가 있지만 CNN을 사용함으로써 서로 멀리 떨어져 있는 단어의 연관성을 배우는 것을 어렵게 만든다. Transformer에서는 attention-weight를 통해 연산수를 줄임. Self-attention은 시퀀스의 representation을 계산하기 위해 단일 시퀀스의 다른 포지션과 연관시킨다. end-to-end는 순환 시퀀스 대신 반복적인 attention을 기반으로 한다. Transformer는 RNN, CNN을 사용하지 않고 attention만을 이용한 최초의 모델이다.
