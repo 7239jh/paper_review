@@ -43,3 +43,15 @@ RNN방식의 언어모델이 SOTA방법론으로 당연시 되었지만 직렬�
 
 ## 2. Background 
 시퀀스 연산을 줄이려는 목표가 있지만 CNN을 사용함으로써 서로 멀리 떨어져 있는 단어의 연관성을 배우는 것을 어렵게 만든다. Transformer에서는 attention-weight를 통해 연산수를 줄임. Self-attention은 시퀀스의 representation을 계산하기 위해 단일 시퀀스의 다른 포지션과 연관시킨다. end-to-end는 순환 시퀀스 대신 반복적인 attention을 기반으로 한다. Transformer는 RNN, CNN을 사용하지 않고 attention만을 이용한 최초의 모델이다.
+
+## 3. Model Architecture
+대부분 모델은 인코더-디코더 형태이다. Transformer는 인코더와 디코더가 완전히 연결된 self-attention과 점별로 쌓여있는 구조이다. 
+<br>
+  <img src='./5.png' width=450><br>  
+
+<br>
+  <img src='./6.png' width=450><br>  
+
+### 3.1 Encodef and Decoder Stacks
+* Encoder: 인코더는 6개의 층으로 구성되어 있고 각층은 multi-head-attention과 feed-forward(FFN) 2개의 서브층으로 나뉜다. 서브층에서는 residual connection과 layer normalization을 사용한다. 계산을 용이하게 하기 위해 각 서브층의 아웃풋 크기 $d_{model}=512$로 통일한다. 
+* Decoder: 인코더와 마찬가지로 6개의 층으로 구성되어 있다. 2개의 서브층에 하나의 서브층이 추가되었고 인코더에서 받은 값을 multi-head-attention하는 역할을 한다. 기존 어텐션 모델에서 인코더-디코더 어텐션 역할을 한다. 디코더에서는 masking을 위해 서브층 한개를 변형했다. 마스킹을 함으로써 t위치의 예측이 t보다 작은 위치의 아웃풋에만 의존할 수 있게 해준다.
