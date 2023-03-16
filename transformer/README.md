@@ -55,3 +55,9 @@ RNN방식의 언어모델이 SOTA방법론으로 당연시 되었지만 직렬�
 ### 3.1 Encodef and Decoder Stacks
 * Encoder: 인코더는 6개의 층으로 구성되어 있고 각층은 multi-head-attention과 feed-forward(FFN) 2개의 서브층으로 나뉜다. 서브층에서는 residual connection과 layer normalization을 사용한다. 계산을 용이하게 하기 위해 각 서브층의 아웃풋 크기 $d_{model}=512$로 통일한다. 
 * Decoder: 인코더와 마찬가지로 6개의 층으로 구성되어 있다. 2개의 서브층에 하나의 서브층이 추가되었고 인코더에서 받은 값을 multi-head-attention하는 역할을 한다. 기존 어텐션 모델에서 인코더-디코더 어텐션 역할을 한다. 디코더에서는 masking을 위해 서브층 한개를 변형했다. 마스킹을 함으로써 t위치의 예측이 t보다 작은 위치의 아웃풋에만 의존할 수 있게 해준다.
+
+### 3.2 Attention
+어텐션은 query와 key-value쌍이 output과 맵핑하는 것으로 묘사할 수 있다. output은 values의 weighted sum으로 계산되며, 여기서 각 value에 할당된 weight는 query와 해당 key의 compatibility function에 의해 계산된다.
+
+<br>
+  <img src='./7.png' width=450><br>  
